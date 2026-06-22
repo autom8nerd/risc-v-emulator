@@ -4,9 +4,12 @@
 
 #ifndef RISC_V_EMULATOR_MEMORY_H
 #define RISC_V_EMULATOR_MEMORY_H
-
+#define MEMORY_SIZE (1024 * 1024)
+#include <stdint.h>
 typedef struct {
-    uint32_t mem[1<<32];
-} MEMORY;
-void init_memory(MEMORY* memory);
+    uint8_t mem[MEMORY_SIZE];
+} Memory;
+void init_memory(Memory* memory);
+uint8_t mem_read(const Memory* memory, uint32_t address);
+void mem_write(Memory* memory, uint32_t address, uint8_t value);
 #endif //RISC_V_EMULATOR_MEMORY_H
