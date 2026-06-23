@@ -9,7 +9,7 @@ DecodedInstruction decode(const uint32_t instruction) {
     instr.rs2 = (instruction >> 20) & 0x1F;
     instr.funct3 = (instruction >> 12) & 0x7;
     instr.funct7 = (instruction >> 25) & 0x7F;
-    instr.imm = INST_UNKNOWN;
+    instr.imm = (instruction >> 20) & 0xFFF;
     if(instr.opcode == 0x33)
     {
         if(instr.funct3 == 0 &&
