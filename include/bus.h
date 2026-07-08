@@ -11,6 +11,7 @@ typedef struct {
 
 void init_bus(Bus* bus, Memory* memory);
 void bus_write(const Bus *bus, uint32_t address, uint8_t value);
+void bus_write32(const Bus *bus, const uint32_t address, const uint8_t value);
 uint8_t bus_read8(const Bus *bus, uint32_t address);
 uint32_t bus_read32(const Bus* bus, const uint32_t address);
 #endif //RISC_V_EMULATOR_BUS_H

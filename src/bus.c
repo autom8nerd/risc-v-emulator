@@ -13,3 +13,6 @@ uint8_t bus_read8(const Bus *bus, const uint32_t address) {
 uint32_t bus_read32(const Bus* bus, const uint32_t address) {
     return mem_read32(bus->memory, address);
 }
+void bus_write32(const Bus *bus, const uint32_t address, const uint8_t value) {
+    mem_write32(bus->memory, address, value);
+}
