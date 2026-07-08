@@ -1,5 +1,8 @@
 #include "../include/cpu.h"
 #include "../include/decoder.h"
+#include <stdio.h>
+#include <stdlib.h>
+
 void init_cpu(CPU *cpu, Bus* bus) { //initialized the CPU that is defined inside cpu.h
     cpu->pc = 0;
     cpu->bus = bus;
@@ -18,6 +21,13 @@ void execute(CPU* cpu, const DecodedInstruction* instr) {
             break;
         case INST_ADDI:
             cpu->reg[instr->rd] = cpu->reg[instr->rs1] + cpu->reg[instr->imm];
+            break;
+        case INST_LW:
+            cpu->reg[instr->rd] = bus_read32(cpu->bus, cpu->reg[instr->rs1] + instr->imm);
+            break;
+        default:
+            printf("Unknown instruction\n");
+            exit(EXIT_FAILURE);
     }
     cpu->pc+=4;
     cpu->reg[x0] = 0;
