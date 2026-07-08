@@ -30,5 +30,8 @@ DecodedInstruction decode(const uint32_t instruction) {
     else if (instr.opcode == 0x03 && instr.funct3 == 0x2) {
         instr.type = INST_LW;
     }
+    else if (instr.opcode == 0x23 && instr.funct3 == 0x2) {
+        instr.type = INST_SW;
+    }
     return instr;
 }
