@@ -5,17 +5,6 @@
 #ifndef RISC_V_EMULATOR_DECODER_H
 #define RISC_V_EMULATOR_DECODER_H
 #include <stdint.h>
-typedef struct DecodedInstruction{
-    uint8_t opcode;
-    uint8_t rd;
-    uint8_t rs1;
-    uint8_t rs2;
-    uint8_t funct3;
-    uint8_t funct7;
-    uint8_t imm;
-    uint8_t type;
-} DecodedInstruction;
-DecodedInstruction decode(uint32_t);
 typedef enum {
     INST_ADD,
     INST_SUB,
@@ -30,4 +19,15 @@ typedef enum {
     INST_AUIPC,
     INST_UNKNOWN
 } InstructionType;
+typedef struct DecodedInstruction{
+    uint8_t opcode;
+    uint8_t rd;
+    uint8_t rs1;
+    uint8_t rs2;
+    uint8_t funct3;
+    uint8_t funct7;
+    int32_t imm;
+    InstructionType type;
+} DecodedInstruction;
+DecodedInstruction decode(uint32_t);
 #endif //RISC_V_EMULATOR_DECODER_H
