@@ -1,6 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/linux,c
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,c
 
+RISCV_GREEN_CARD.pdf
 ### C ###
 # Prerequisites
 *.d
