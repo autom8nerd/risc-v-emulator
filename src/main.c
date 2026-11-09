@@ -1,13 +1,34 @@
 #include "../include/memory.h"
 #include "../include/bus.h"
+#include "../include/cpu.h"
+#include "../include/decoder.h"
 #include <stdio.h>
 Memory memory;
 Bus bus;
-int main() {
-    init_memory(&memory);
-    init_bus(&bus, &memory);
+CPU cpu;
+int main(){
+    init_cpu(&cpu, &bus);
 
-    bus_write(&bus, 0x100, 42);
+    cpu.reg[x10] = 5;
+    cpu.reg[x11] = 7;
 
-    printf("%u\n", bus_read(&bus, 0x100));
+    DecodedInstruction instr;
+
+    instr.type = INST_ADD;
+    instr.rd   = x12;
+    instr.rs1  = x10;
+    instr.rs2  = x11;
+
+    execute(&cpu, &instr);
+
+    printf("x12 = %u\n", cpu.reg[x12]);
+    printf("pc  = %u\n", cpu.pc);
+    mem_write32(&memory, 0, 0x12345678);
+
+    printf("%02X\n", memory.mem[0]);
+    printf("%02X\n", memory.mem[1]);
+    printf("%02X\n", memory.mem[2]);
+    printf("%02X\n", memory.mem[3]);
+
+    printf("%08X\n", mem_read32(&memory, 0));
 }
